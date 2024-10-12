@@ -1,0 +1,55 @@
+ingestion:
+    - table: productlines
+      merge_on:
+        - productLine
+
+    - table: products
+      merge_on:
+        - productCode
+
+    - table: offices
+      merge_on:
+        - officeCode
+
+    - table: employees
+      merge_on:
+        - employeeNumber
+
+    - table: customers
+      merge_on:
+        - customerNumber
+
+    - table: payments
+      merge_on:
+        - customerNumber
+        - checkNumber
+      incremental_based_on:
+        - paymentDate
+        
+    - table: orders
+      merge_on:
+        - orderNumber
+      incremental_based_on:
+        - orderDate
+        - requiredDate
+        - shippedDate
+
+    - table: orderdetails
+      merge_on:
+        - orderNumber
+        - productCode
+
+transformation:
+    - resources/sql/case_study/silver/productlines.sql
+    - resources/sql/case_study/silver/products.sql
+    - resources/sql/case_study/silver/offices.sql
+    - resources/sql/case_study/silver/employees.sql
+    - resources/sql/case_study/silver/customers.sql
+    - resources/sql/case_study/silver/payments.sql
+    - resources/sql/case_study/silver/orders.sql
+    - resources/sql/case_study/silver/orderdetails.sql
+
+datamart:
+    - resources/sql/case_study/gold/dim_products.sql
+    - resources/sql/case_study/gold/fact_sales.sql
+

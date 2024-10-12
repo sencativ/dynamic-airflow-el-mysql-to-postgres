@@ -1,0 +1,16 @@
+ingestion:
+    - table: Customers
+
+    - table: Orders
+
+    - table: Products
+
+    - table: Order_Items
+
+    - table: Suppliers
+
+    - table: Categories
+        
+    - table: Employees
+
+    - table: Shippers
